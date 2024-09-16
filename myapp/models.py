@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, EmailField, ReferenceField
+from mongoengine import Document, StringField, ReferenceField
 import bcrypt
 
 class User(Document):
@@ -15,8 +15,13 @@ class User(Document):
         stored_password = self.password.encode('utf-8')
         return bcrypt.checkpw(password.encode('utf-8'), stored_password)
 
+    def is_admin(self):
+        return self.role == "admin"
+
+    def is_user(self):
+        return self.role == "user"
 
 class Project(Document):
     name = StringField(required=True)
     description = StringField(required=True)
-    created_by = ReferenceField("User")
+    created_by = ReferenceField(User)

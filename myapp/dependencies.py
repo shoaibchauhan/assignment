@@ -1,7 +1,6 @@
 import jwt
 from fastapi import HTTPException, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-
 from myapp.models import User
 
 SECRET_KEY = 'your_secret_key'
@@ -9,6 +8,7 @@ ALGORITHM = 'HS256'
 
 # Define the HTTPBearer security scheme
 security = HTTPBearer()
+
 def decode_jwt(token: str) -> dict:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
