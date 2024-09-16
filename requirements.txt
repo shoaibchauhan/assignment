@@ -1,0 +1,9 @@
+fastapi
+django
+djangorestframework
+uvicorn
+pydantic
+motor
+mongoengine
+bcrypt
+pyjwt

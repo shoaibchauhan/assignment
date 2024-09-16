@@ -6,7 +6,7 @@ from pydantic import BaseModel
 import jwt
 
 
-from .dependencies import admin_required, get_current_user, ALGORITHM, SECRET_KEY
+from .dependencies import admin_required, get_current_user, ALGORITHM, SECRET_KEY, user_or_admin_required
 from .models import User, Project
 
 router = APIRouter()
@@ -88,7 +88,7 @@ async def update_project(project_id: str, project: ProjectIn, user: User = Depen
     return {"message": "Project updated successfully"}
 
 @router.get("/projects/all", response_model=List[ProjectOut])
-async def get_all_projects(user: User = Depends(admin_required)):
+async def get_all_projects(user: User = Depends(user_or_admin_required)):
     projects = Project.objects.all()
     return [
         {"id": str(project.id), "name": project.name, "description": project.description}

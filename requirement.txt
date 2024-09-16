@@ -1,7 +1,0 @@
-fastapi==0.95.1
-uvicorn==0.22.0
-pydantic==2.8.1
-motor==3.3.1
-mongoengine==0.23.1
-bcrypt==4.0.1
-pyjwt==2.8.0

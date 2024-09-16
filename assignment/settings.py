@@ -79,9 +79,8 @@ WSGI_APPLICATION = 'assignment.wsgi.application'
 # MongoDB Database Configuration
 # Instead of the default database engine, we use MongoEngine for MongoDB
 connect(
-    db="assignment",  # Replace with your MongoDB database name
-    host="localhost",   # MongoDB host (localhost or cloud URI)
-    port=27017          # MongoDB port (default 27017)
+    db='assignment',
+    host='mongodb://localhost:27017/assignment'
 )
 
 

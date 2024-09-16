@@ -30,3 +30,9 @@ def get_current_user(authorization: HTTPAuthorizationCredentials = Depends(secur
 def admin_required(user: User = Depends(get_current_user)):
     if user.role != "admin":
         raise HTTPException(status_code=403, detail="Only admins can perform this action")
+    return user
+
+def user_or_admin_required(user: User = Depends(get_current_user)):
+    if user.role not in ['admin', 'user']:
+        raise HTTPException(status_code=403, detail="User or Admin access required")
+    return user
