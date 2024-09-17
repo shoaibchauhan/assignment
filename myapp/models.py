@@ -4,7 +4,7 @@ import bcrypt
 class User(Document):
     username = StringField(required=True, unique=True)
     password = StringField(required=True)
-    role = StringField(required=True, default="user")
+    role = StringField(required=True, choices=["user", "admin"], default="user")
 
     def set_password(self, password):
         salt = bcrypt.gensalt()
@@ -22,6 +22,6 @@ class User(Document):
         return self.role == "user"
 
 class Project(Document):
-    name = StringField(required=True)
+    name = StringField(required=True,Unique=True)
     description = StringField(required=True)
-    created_by = ReferenceField(User)
+    created_by = ReferenceField(User, required=True)
